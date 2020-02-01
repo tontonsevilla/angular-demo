@@ -1,12 +1,17 @@
+import { DemoComponent } from './demo.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
-  }
+    {
+        path: '',
+        component: DemoComponent
+    },
+    { 
+        path: 'demo',
+        component: DemoComponent
+    }
 ];
 
 @NgModule({
@@ -20,4 +25,4 @@ const routes: Routes = [
   ]
 })
 
-export class AppRoutingModule { }
+export class DemoRoutingModule { }

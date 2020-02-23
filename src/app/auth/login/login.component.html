@@ -12,17 +12,19 @@
                 <div class="card-body px-lg-5 pt-0">
 
                     <!-- Form -->
-                    <form class="needs-validation" style="color: #757575;" novalidate>
+                    <form [formGroup]="loginForm" class="needs-validation" style="color: #757575;">
                         <!-- Email -->
                         <div class="md-form">
-                          <input type="text" id="name" class="form-control" required>
-                          <label for="name">User Name</label>
+                          <input mdbInput mdbValidate type="text" id="email" formControlName="email" class="form-control">
+                          <label for="email">Email</label>
+                          <mdb-error *ngIf="isInvalid('email')">Email is required.</mdb-error>
                         </div>
 
                         <!-- Password -->
                         <div class="md-form">
-                          <input type="password" id="password" class="form-control" required>
+                          <input mdbInput mdbValidate type="password" id="password" formControlName="password" class="form-control">
                           <label for="password">Password</label>
+                          <mdb-error *ngIf="isInvalid('password')">Password is required.</mdb-error>
                         </div>
 
                         <div class="d-flex justify-content-around">
@@ -33,7 +35,7 @@
                         </div>
 
                         <!-- Sign in button -->
-                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="button">Sign in</button>
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="button" (click)="login()">Sign in</button>
 
                         <!-- Register -->
                         <p>

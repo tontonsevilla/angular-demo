@@ -12,7 +12,7 @@
                 <div class="card-body px-lg-5 pt-0">
 
                     <!-- Form -->
-                    <form [formGroup]="loginForm" class="needs-validation" style="color: #757575;">
+                    <form [formGroup]="loginForm" style="color: #757575;">
                         <!-- Email -->
                         <div class="md-form">
                           <input mdbInput mdbValidate type="text" id="email" formControlName="email" class="form-control">
@@ -40,7 +40,7 @@
                         <!-- Register -->
                         <p>
                             Not a member?
-                            <a href="~/Account/Register">Register</a>
+                            <a [routerLink]="['/auth/register']">Register</a>
                         </p>
 
                         <div class="d-none">

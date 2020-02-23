@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { User } from '../models/auth/User';
 })
 
 export class AuthService {
-  endpoint: string = 'http://localhost:32768/api/v1';
+  endpoint: string = 'https://localhost:32768/api/v1';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
@@ -21,17 +21,15 @@ export class AuthService {
   }
 
   // Sign-up
-  signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
-    return this.http.post(api, user)
-      .pipe(
-        catchError(this.handleError)
-      )
+  signUp(user: User) {
+    let api = `${this.endpoint}/account/register`;
+    this.http.post<any>(api, user)  
+    .subscribe((res: any) => {});
   }
 
   // Sign-in
   signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/signin`, user)
+    return this.http.post<any>(`${this.endpoint}/authenticate/signin`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
         this.getUserProfile(res._id).subscribe((res) => {

@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { DirectivesModule } from './../shared/directives/DirectivesModule';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-route.module';
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   declarations: [
     AuthComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class AuthModule { }

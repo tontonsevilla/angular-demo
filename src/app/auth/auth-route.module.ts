@@ -1,16 +1,22 @@
+import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-    { 
-        path: 'auth',
-        component: AuthComponent
-    },
     {
-      path: '',
-      component: AuthComponent
+        path: 'auth',
+        children: [
+          {
+            path: 'login',
+            component: LoginComponent
+          },
+          {
+            path: '',
+            component: AuthComponent
+          }
+        ]
     }
 ];
 

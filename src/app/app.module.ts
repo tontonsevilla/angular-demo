@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { RouterModule } from '@angular/router';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     RouterModule.forRoot([]),
     MDBBootstrapModule.forRoot(),
     LayoutModule,
-    DemoModule
+    DemoModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

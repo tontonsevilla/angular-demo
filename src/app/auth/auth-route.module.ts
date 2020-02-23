@@ -1,16 +1,17 @@
+import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-  { 
-    path: 'auth', 
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-  },
-  { 
-    path: '', 
-    loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
-  }
+    { 
+        path: 'auth',
+        component: AuthComponent
+    },
+    {
+      path: '',
+      component: AuthComponent
+    }
 ];
 
 @NgModule({
@@ -24,4 +25,4 @@ const routes: Routes = [
   ]
 })
 
-export class AppRoutingModule { }
+export class AuthRoutingModule { }

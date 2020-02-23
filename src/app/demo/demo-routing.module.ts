@@ -4,14 +4,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: DemoComponent
-    },
     { 
         path: 'demo',
         component: DemoComponent
-    }
+    },
+    {
+      path: '',
+      component: DemoComponent
+  }
 ];
 
 @NgModule({

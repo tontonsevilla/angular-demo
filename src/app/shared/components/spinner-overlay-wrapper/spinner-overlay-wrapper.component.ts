@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpinnerOverlayWrapperComponent implements OnInit {
 
+  showSpinner: boolean;
+
   constructor() { }
 
   ngOnInit() {

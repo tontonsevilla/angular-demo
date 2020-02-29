@@ -8,7 +8,7 @@ import { SharedComponentsModule } from '../shared/components/SharedComponentsMod
   imports: [
     CommonModule,
     DemoRoutingModule,
-    SharedComponentsModule
+    SharedComponentsModule.forRoot()
   ],
   declarations: [DemoComponent]
 })

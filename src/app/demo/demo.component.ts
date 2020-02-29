@@ -1,6 +1,5 @@
+import { SpinnerOverlayService } from './../shared/services/spinner-overlay.service';
 import { Component, OnInit } from '@angular/core';
-import { timer, Observable } from 'rxjs';
-import { debounce, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-demo',
@@ -9,10 +8,13 @@ import { debounce, catchError } from 'rxjs/operators';
 })
 export class DemoComponent implements OnInit {
 
-  constructor() { 
+  constructor(
+    private spinnerOverlayService: SpinnerOverlayService
+  ) { 
   }
 
   ngOnInit() {
+    this.spinnerOverlayService.show();
   }
 
 }

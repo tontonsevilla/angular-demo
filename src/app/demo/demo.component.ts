@@ -1,4 +1,3 @@
-import { SpinnerOverlayService } from './../shared/services/spinner-overlay.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,12 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class DemoComponent implements OnInit {
 
   constructor(
-    private spinnerOverlayService: SpinnerOverlayService
   ) { 
   }
 
   ngOnInit() {
-    this.spinnerOverlayService.show();
   }
 
 }

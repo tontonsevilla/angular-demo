@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     .subscribe(res => {     
       if (!res.hasError && res.data) {
         localStorage.setItem('access_token', res.data.token)
-        this.router.navigate(['/']);
+        this.router.navigate(['../../demo']);
       } else {
         this.validationMessage = ValidationMessage.createFromApiResponse(res)
         .setTitle('Login')

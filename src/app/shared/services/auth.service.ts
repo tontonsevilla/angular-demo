@@ -2,9 +2,8 @@ import { ApiResponse } from './../models/common/ApiResponse';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { User } from '../models/auth/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -13,13 +12,15 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 
 export class AuthService {
+
   endpoint: string = 'https://localhost:32768/api/v1';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
+  private tokenStorageKey = 'access_token';
+
   constructor(
     private http: HttpClient,
-    public router: Router,
     private apiService: ApiService,
     private jwtHelper: JwtHelperService
   ) {
@@ -42,19 +43,16 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem(this.tokenStorageKey);
   }
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
+    let authToken = localStorage.getItem(this.tokenStorageKey);
     return (authToken !== null) ? true : false;
   }
 
-  doLogout() {
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
-      this.router.navigate(['log-in']);
-    }
+  logout() {
+   localStorage.removeItem(this.tokenStorageKey);
   }
 
   // User profile
@@ -66,9 +64,8 @@ export class AuthService {
       }));
   }
 
-  public isAuthenticated(): boolean {    
-    const token = localStorage.getItem('access_token');
+  isAuthenticated(): boolean {    
+    const token = localStorage.getItem(this.tokenStorageKey);
     return !this.jwtHelper.isTokenExpired(token);
   }
-
 }

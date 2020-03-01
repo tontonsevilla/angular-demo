@@ -4,5 +4,43 @@
   <mdb-navbar-brand>
     <a class="navbar-brand" href="/">Angular Demo</a>
   </mdb-navbar-brand>
+
+  <ng-container *showAuthed="true">
+    <!-- Collapsible content -->
+    <links>
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a
+            dropdownToggle
+            mdbWavesEffect
+            type="button"
+            class="nav-link dropdown-toggle waves-light"
+            mdbWavesEffect
+          >
+            <mdb-icon fas icon="user"></mdb-icon> Profile<span
+              class="caret"
+            ></span
+          ></a>
+          <div
+            *dropdownMenu
+            class="dropdown-menu dropdown-menu-right dropdown dropdown-primary"
+            role="menu"
+          >
+            <a
+              type="button"
+              class="dropdown-item waves-light"
+              mdbWavesEffect
+              (click)="logout()"
+              >Log out</a
+            >
+          </div>
+        </li>
+      </ul>
+      <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+  </ng-container>
 </mdb-navbar>
 <!--/.Navbar-->

@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 
   
 export class ApiService {
-    endpoint: string = 'https://localhost:32768/api/v1';
+    endpoint: string = 'https://localhost:32770/api/v1';
     headers = new HttpHeaders().set('Content-Type', 'application/json');
     currentUser = {};
   
@@ -20,7 +20,7 @@ export class ApiService {
     }
   
     post<T>(apiUrlPath: string, data: any): Observable<ApiResponse<T>> {
-        return this.http.post<ApiResponse<T>>(`${this.endpoint}${apiUrlPath}`, data)
+        return this.http.post<ApiResponse<T>>(`${this.endpoint}${apiUrlPath}`, data, {headers: this.headers})
             .pipe(res => {
                 if (res) {
                     return res;
@@ -40,18 +40,12 @@ export class ApiService {
     }
 
     handleError(error: HttpErrorResponse) {
-        let msg = '';
     
         if (error.error instanceof ErrorEvent) {
-          // client-side error
-          msg = error.error.message;
     
         } else {
-          // server-side error
-          msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
     
         return throwError(error);
       }
-    
   }

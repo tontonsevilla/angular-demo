@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ValidationMessage } from '../../models/common/ValidationMessage';
 
 @Component({
   selector: 'app-validation-summary',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./validation-summary.component.css']
 })
 export class ValidationSummaryComponent implements OnInit {
+
+  @Input() vaidationMessage: ValidationMessage;
 
   constructor() { }
 

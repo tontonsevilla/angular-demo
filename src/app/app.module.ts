@@ -9,7 +9,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthModule } from './auth/auth.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
-import { ValidationModule } from './shared/validation-summary/validation.module';
 
 @NgModule({
   declarations: [

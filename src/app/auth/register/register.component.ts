@@ -1,9 +1,9 @@
-import { throwError } from 'rxjs';
 import { User } from './../../shared/models/auth/User';
 import { AuthService } from './../../shared/services/auth.service';
 import { FormService } from './../../shared/services/form.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ValidationMessage } from 'src/app/shared/models/common/ValidationMessage';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  validationMessage: ValidationMessage;
   registrationForm: FormGroup;
 
   constructor(

@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ValidationSummaryComponent } from './validation-summary/validation-summary.component';
   
 @NgModule({
     imports: [
@@ -13,12 +14,14 @@ import { OverlayModule } from '@angular/cdk/overlay';
     declarations: [
       SpinnerComponent,
       SpinnerOverlayWrapperComponent,
-      SpinnerOverlayComponent
+      SpinnerOverlayComponent,
+      ValidationSummaryComponent
     ],
     exports: [
       SpinnerComponent,
       SpinnerOverlayWrapperComponent,
-      SpinnerOverlayComponent
+      SpinnerOverlayComponent,
+      ValidationSummaryComponent
     ],
     entryComponents: [SpinnerOverlayComponent]
   })

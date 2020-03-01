@@ -8,7 +8,7 @@ import { AuthComponent } from './auth.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ValidationModule } from '../shared/validation-summary/validation.module';
+import { SharedComponentsModule } from '../shared/components/SharedComponentsModule';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { ValidationModule } from '../shared/validation-summary/validation.module
     ReactiveFormsModule,
     DirectivesModule,
     HttpClientModule,
-    ValidationModule.forRoot()
+    SharedComponentsModule.forRoot()
   ],
   declarations: [
     AuthComponent,

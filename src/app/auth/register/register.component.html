@@ -10,7 +10,9 @@
 
                 <!--Card content-->
                 <div class="card-body px-lg-5 pt-0">
+                   <ng-container *ngIf="validationMessage">
                     <app-validation-summary [validationMessage]="validationMessage"></app-validation-summary>
+                   </ng-container>
                     <!-- Form -->
                     <form [formGroup]="registrationForm" style="color: #757575;">
                         <div class="form-row">

@@ -48,10 +48,25 @@ export class RegisterComponent implements OnInit {
     const user = this.registrationForm.getRawValue() as User;
 
     this.authService.signUp(user)
-    .subscribe(res => {
+    .subscribe(res => {     
       if (!res.hasError) {
-        
+        this.validationMessage = ValidationMessage.create()
+        .setTitle('Registration')
+        .pushMessage('Successful.')
+        .isSuccess()
+        .showAsToast();
+      } else {
+        this.validationMessage = ValidationMessage.createFromApiResponse(res)
+        .setTitle('Registration')
+        .isDanger()
+        .showAsToast();
       }
+    },
+    (error: any) => {
+      this.validationMessage = ValidationMessage.createFromHttpErrorResponse(error)
+        .setTitle('Registration')
+        .isDanger()
+        .showAsToast();
     });
   }
 

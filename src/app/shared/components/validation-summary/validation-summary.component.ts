@@ -8,7 +8,7 @@ import { ValidationMessage } from '../../models/common/ValidationMessage';
 })
 export class ValidationSummaryComponent implements OnInit {
 
-  @Input() vaidationMessage: ValidationMessage;
+  @Input() validationMessage: ValidationMessage;
 
   constructor() { }
 

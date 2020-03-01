@@ -3,6 +3,8 @@ import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { FormService } from 'src/app/shared/services/form.service';
+import { ValidationMessage } from 'src/app/shared/models/common/ValidationMessage';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class LoginComponent implements OnInit {
 
+  validationMessage: ValidationMessage;
   loginForm: FormGroup;
 
   constructor(
@@ -38,7 +41,25 @@ export class LoginComponent implements OnInit {
     }
 
     const user = this.loginForm.getRawValue() as User;
-    this.authService.signIn(user);
+    user.username = user.email;
+    
+    this.authService.signIn(user)
+    .subscribe(res => {     
+      if (!res.hasError && res.data) {
+        localStorage.setItem('access_token', res.data.token)
+      } else {
+        this.validationMessage = ValidationMessage.createFromApiResponse(res)
+        .setTitle('Login')
+        .isDanger()
+        .showAsToast();
+      }
+    },
+    (error: any) => {
+      this.validationMessage = ValidationMessage.createFromHttpErrorResponse(error)
+        .setTitle('Login')
+        .isDanger()
+        .showAsToast();
+    });
 
   }
 

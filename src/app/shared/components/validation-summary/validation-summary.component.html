@@ -1,6 +1,4 @@
-<blockquote class="blockquote bq-danger">
-  <p class="bq-title">{{vaidationMessage.title}</p>
-  <p *ngFor="let message of validationMessage.messages">
-    {{message}}
-  </p>
+<blockquote class="blockquote bq-{{validationMessage.type}}">
+  <p class="bq-title">{{validationMessage.title}}</p>
+  <p *ngFor="let message of validationMessage.messages">{{message}}</p>
 </blockquote>

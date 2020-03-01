@@ -51,7 +51,7 @@ export class ApiService {
           msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
     
-        return throwError(msg);
+        return throwError(error);
       }
     
   }

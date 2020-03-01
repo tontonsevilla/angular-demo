@@ -33,14 +33,10 @@ export class AuthService {
 
   // Sign-in
   signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/authenticate/signin`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token)
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
-        })
-      });
+    return this.apiService.post<any>(`/authenticate/signin`, user)
+    .pipe(res => {
+      return res;
+    });
   }
 
   getToken() {

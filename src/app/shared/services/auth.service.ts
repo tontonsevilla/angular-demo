@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { ApiResponse } from './../models/common/ApiResponse';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthService {
 
-  endpoint: string = 'https://localhost:32768/api/v1';
+  endpoint: string = environment.apiUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
@@ -25,6 +26,7 @@ export class AuthService {
     private apiService: ApiService,
     private jwtHelper: JwtHelperService
   ) {
+    this.authenticate();
   }
 
   // Sign-up

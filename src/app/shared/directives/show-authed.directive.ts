@@ -22,15 +22,15 @@ export class ShowAuthedDirective implements OnInit {
   }
 
   ngOnInit() {
-    const isAuthenticated = this.authService.isAuthenticated();
-
-    if (
-      (isAuthenticated && this.condition) ||
-      (!isAuthenticated && !this.condition)
-    ) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-    } else {
-      this.viewContainer.clear();
-    }
+    this.authService.isAuthenticate.subscribe(isAuthenticated => {
+      if (
+        (isAuthenticated && this.condition) ||
+        (!isAuthenticated && !this.condition)
+      ) {
+        this.viewContainer.createEmbeddedView(this.templateRef);
+      } else {
+        this.viewContainer.clear();
+      }
+    });
   }
 }

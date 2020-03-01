@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
       if (!res.hasError && res.data) {
         localStorage.setItem('access_token', res.data.token)
         this.router.navigate(['../../demo']);
+        this.authService.authenticate();
       } else {
         this.validationMessage = ValidationMessage.createFromApiResponse(res)
         .setTitle('Login')

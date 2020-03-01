@@ -1,9 +1,8 @@
 import { ApiResponse } from './../models/common/ApiResponse';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
-import { Observable, throwError, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 import { User } from '../models/auth/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -17,10 +16,12 @@ export class AuthService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
+  private authenticationSource = new BehaviorSubject<boolean>(false);
+  isAuthenticate = this.authenticationSource.asObservable();
+
   private tokenStorageKey = 'access_token';
 
   constructor(
-    private http: HttpClient,
     private apiService: ApiService,
     private jwtHelper: JwtHelperService
   ) {
@@ -42,30 +43,17 @@ export class AuthService {
     });
   }
 
-  getToken() {
-    return localStorage.getItem(this.tokenStorageKey);
-  }
-
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem(this.tokenStorageKey);
-    return (authToken !== null) ? true : false;
-  }
-
   logout() {
    localStorage.removeItem(this.tokenStorageKey);
   }
 
-  // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${this.endpoint}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {}
-      }));
+  private getToken(): string {
+    return localStorage.getItem(this.tokenStorageKey);
   }
 
-  isAuthenticated(): boolean {    
-    const token = localStorage.getItem(this.tokenStorageKey);
-    return !this.jwtHelper.isTokenExpired(token);
+  authenticate() {    
+    const token = this.getToken();
+
+    this.authenticationSource.next(!this.jwtHelper.isTokenExpired(token));
   }
 }

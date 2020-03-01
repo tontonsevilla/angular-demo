@@ -5,11 +5,15 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ValidationSummaryComponent } from './validation-summary/validation-summary.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   
 @NgModule({
     imports: [
       CommonModule,
-      OverlayModule
+      OverlayModule,
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
     ],
     declarations: [
       SpinnerComponent,

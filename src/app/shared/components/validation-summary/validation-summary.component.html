@@ -1,4 +1,6 @@
-<blockquote class="blockquote bq-{{validationMessage.type}}">
-  <p class="bq-title">{{validationMessage.title}}</p>
-  <p *ngFor="let message of validationMessage.messages">{{message}}</p>
-</blockquote>
+<ng-container *ngIf="!validationMessage.isToast">
+  <blockquote class="blockquote bq-{{validationMessage.type}}">
+    <p class="bq-title">{{validationMessage.title}}</p>
+    <p *ngFor="let message of validationMessage.messages">{{message}}</p>
+  </blockquote>
+</ng-container>

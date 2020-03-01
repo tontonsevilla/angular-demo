@@ -7,12 +7,12 @@ import { Injectable } from '@angular/core';
 })
 export class ValidationMessage {
 
-  _type: string;
+  private _type: string;
   get type(): string {
     return this._type;
   }
 
-  _isToast: boolean;
+  private _isToast: boolean;
   get isToast(): boolean {
     return this._isToast;
   }

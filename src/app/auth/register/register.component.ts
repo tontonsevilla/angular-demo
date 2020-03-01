@@ -46,7 +46,12 @@ export class RegisterComponent implements OnInit {
 
     const user = this.registrationForm.getRawValue() as User;
 
-    this.authService.signUp(user);
+    this.authService.signUp(user)
+    .subscribe(res => {
+      if (!res.hasError) {
+        
+      }
+    });
   }
 
 }

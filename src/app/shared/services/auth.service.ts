@@ -1,3 +1,5 @@
+import { ApiResponse } from './../models/common/ApiResponse';
+import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -16,15 +18,17 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    public router: Router
+    public router: Router,
+    private apiService: ApiService
   ) {
   }
 
   // Sign-up
-  signUp(user: User) {
-    let api = `${this.endpoint}/account/register`;
-    this.http.post<any>(api, user)  
-    .subscribe((res: any) => {});
+  signUp(user: User): Observable<ApiResponse<any>> {
+    return this.apiService.post<any>('/account/register', user) 
+    .pipe(res => {
+      return res;
+    });
   }
 
   // Sign-in
@@ -36,7 +40,7 @@ export class AuthService {
           this.currentUser = res;
           this.router.navigate(['user-profile/' + res.msg._id]);
         })
-      })
+      });
   }
 
   getToken() {
@@ -61,21 +65,7 @@ export class AuthService {
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
-      }),
-      catchError(this.handleError)
-    )
+      }));
   }
 
-  // Error 
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(msg);
-  }
 }

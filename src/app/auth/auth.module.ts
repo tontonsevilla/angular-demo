@@ -8,6 +8,7 @@ import { AuthComponent } from './auth.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ValidationModule } from '../shared/validation-summary/validation.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     DirectivesModule,
-    HttpClientModule
+    HttpClientModule,
+    ValidationModule.forRoot()
   ],
   declarations: [
     AuthComponent,

@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms'
 import { FormService } from 'src/app/shared/services/form.service';
 import { ValidationMessage } from 'src/app/shared/models/common/ValidationMessage';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private formService: FormService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
     .subscribe(res => {     
       if (!res.hasError && res.data) {
         localStorage.setItem('access_token', res.data.token)
+        this.router.navigate(['/']);
       } else {
         this.validationMessage = ValidationMessage.createFromApiResponse(res)
         .setTitle('Login')

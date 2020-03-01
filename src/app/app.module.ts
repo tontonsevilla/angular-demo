@@ -9,6 +9,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthModule } from './auth/auth.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
+import { JwtModule, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,12 @@ import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
     { 
       provide: HTTP_INTERCEPTORS, 
       useClass: LoaderInterceptor, multi: true 
-    }
+    },
+    { 
+      provide: JWT_OPTIONS, 
+      useValue: JWT_OPTIONS 
+    },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })

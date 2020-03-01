@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../models/auth/User';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private jwtHelper: JwtHelperService
   ) {
   }
 
@@ -62,6 +64,11 @@ export class AuthService {
       map((res: Response) => {
         return res || {}
       }));
+  }
+
+  public isAuthenticated(): boolean {    
+    const token = localStorage.getItem('access_token');
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
 }

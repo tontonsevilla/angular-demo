@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { 
@@ -8,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   { 
-    path: '', 
+    path: '',
     loadChildren: () => import('./demo/demo.module').then(m => m.DemoModule)
   }
 ];

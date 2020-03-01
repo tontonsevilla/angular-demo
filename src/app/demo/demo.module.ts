@@ -1,3 +1,4 @@
+import { AuthGuard } from './../shared/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DemoComponent } from './demo.component';
@@ -10,6 +11,8 @@ import { SharedComponentsModule } from '../shared/components/SharedComponentsMod
     DemoRoutingModule,
     SharedComponentsModule.forRoot()
   ],
-  declarations: [DemoComponent]
+  declarations: [
+    DemoComponent
+  ]
 })
 export class DemoModule { }
